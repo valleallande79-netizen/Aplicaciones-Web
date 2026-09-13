@@ -1,3 +1,7 @@
 contabilidad/*.json
 car-maintenance/*.json
 WalloTribute/*.json
+node_modules/
+dist/
+build/
+.env
