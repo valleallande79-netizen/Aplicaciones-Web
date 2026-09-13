@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Contabilidad Doméstica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>💰 Contabilidad <span>Doméstica</span></h1>
+    <div class="header-actions">
+      <button class="btn btn-outline" id="btn-import">📥 <span>Importar movimientos</span></button>
+      <button class="btn btn-primary" id="btn-new-txn">+ <span>Nuevo movimiento</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="app"><div class="empty" style="padding:4rem"><p>Cargando…</p></div></main>
+
+<!-- ── Transaction modal ── -->
+<!-- El markup de los modales se mantiene: las vistas Backbone (TxnModalView,
+     AccountsModalView, AccountFormView) los usan como `el:` fijo (ver
+     views/transactions/TxnModalView.js, views/accounts/*.js). No llevan
+     onclick="" inline: los eventos se delegan vía `events: {}` en cada vista. -->
+<div id="modal-txn" class="modal-overlay">
+  <div class="modal modal-lg">
+    <div class="modal-hd">
+      <span class="modal-title" id="txn-title">Nuevo movimiento</span>
+      <button class="modal-x">&times;</button>
+    </div>
+    <div class="modal-bd">
+      <div class="type-sel">
+        <button class="type-tab income active"   id="tt-income">💹 Ingreso</button>
+        <button class="type-tab expense"          id="tt-expense">💸 Gasto</button>
+        <button class="type-tab transfer"         id="tt-transfer">🔄 Traspaso</button>
+        <button class="type-tab holder-transfer"  id="tt-holder-transfer">👥 Titulares</button>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Importe (€)</label>
+          <input type="number" id="txn-amount" min="0.01" step="0.01" placeholder="0,00">
+        </div>
+        <div class="form-group">
+          <label>Fecha</label>
+          <input type="date" id="txn-date">
+        </div>
+      </div>
+      <div class="form-group" id="grp-cat">
+        <label>Categoría</label>
+        <select id="txn-cat"></select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label id="lbl-acc">Cuenta</label>
+          <select id="txn-acc"></select>
+        </div>
+        <div class="form-group" id="grp-to-acc" style="display:none">
+          <label>Cuenta destino</label>
+          <select id="txn-to-acc"></select>
+        </div>
+      </div>
+      <div class="form-group" id="grp-holder" style="display:none">
+        <label id="lbl-holder">Atribuir a titular</label>
+        <select id="txn-holder"></select>
+      </div>
+      <div class="form-row" id="grp-holders-row" style="display:none">
+        <div class="form-group">
+          <label>De (titular)</label>
+          <select id="txn-h-from"></select>
+        </div>
+        <div class="form-group">
+          <label>A (titular)</label>
+          <select id="txn-h-to"></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Descripción (opcional)</label>
+        <input type="text" id="txn-desc" placeholder="Mercadona, recibo luz…">
+      </div>
+      <input type="hidden" id="txn-id">
+    </div>
+    <div class="modal-ft">
+      <button class="btn btn-outline btn-sm">Cancelar</button>
+      <button class="btn btn-income btn-sm" id="btn-save-txn">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Accounts list modal ── -->
+<div id="modal-accs" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-hd">
+      <span class="modal-title">Cuentas bancarias</span>
+      <button class="modal-x">&times;</button>
+    </div>
+    <div class="modal-bd" id="accs-list"></div>
+    <div class="modal-ft modal-ft-split">
+      <button class="btn btn-outline btn-sm">+ Nueva cuenta</button>
+      <button class="btn btn-outline btn-sm">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Account form modal ── -->
+<div id="modal-acc-form" class="modal-overlay">
+  <div class="modal modal-lg">
+    <div class="modal-hd">
+      <span class="modal-title" id="acc-form-title">Nueva cuenta</span>
+      <button class="modal-x">&times;</button>
+    </div>
+    <div class="modal-bd">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre de la cuenta</label>
+          <input type="text" id="acc-name" placeholder="Cuenta corriente…">
+        </div>
+        <div class="form-group">
+          <label>Entidad bancaria</label>
+          <input type="text" id="acc-bank" placeholder="BBVA, ING…">
+        </div>
+      </div>
+      <div class="form-group" id="grp-acc-init">
+        <label>Saldo inicial (€)</label>
+        <input type="number" id="acc-init" placeholder="0,00" step="0.01">
+        <p class="form-hint">Con titulares, el saldo inicial se gestiona por cada titular.</p>
+      </div>
+      <div class="form-group">
+        <label>Color identificador</label>
+        <div class="color-picker" id="color-picker"></div>
+      </div>
+      <div class="form-group">
+        <div class="holders-hdr">
+          <label style="margin:0">Titulares</label>
+          <button type="button" class="btn btn-outline btn-sm">+ Añadir titular</button>
+        </div>
+        <div class="fh-list" id="form-holders-list"></div>
+      </div>
+      <input type="hidden" id="acc-id">
+    </div>
+    <div class="modal-ft">
+      <button class="btn btn-outline btn-sm">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="btn-save-account">Guardar cuenta</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Account credentials modal ── -->
+<div id="modal-credentials" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-hd">
+      <span class="modal-title" id="cred-modal-title">🔒 Credenciales</span>
+      <button class="modal-x">&times;</button>
+    </div>
+    <div class="modal-bd" id="cred-body"></div>
+    <div class="modal-ft" id="cred-footer"></div>
+  </div>
+</div>
+
+<!-- ── Import movements modal ── -->
+<div id="modal-import" class="modal-overlay">
+  <div class="modal modal-lg">
+    <div class="modal-hd">
+      <span class="modal-title" id="imp-modal-title">📥 Importar movimientos</span>
+      <button class="modal-x">&times;</button>
+    </div>
+    <div class="modal-bd" id="imp-body"></div>
+    <div class="modal-ft" id="imp-footer"></div>
+  </div>
+</div>
+
+<!-- ── Bulk edit modal ── -->
+<div id="modal-bulk-edit" class="modal-overlay">
+  <div class="modal modal-lg">
+    <div class="modal-hd">
+      <span class="modal-title">☑ Editar en bloque</span>
+      <button class="modal-x">&times;</button>
+    </div>
+    <div class="modal-bd" id="bulk-body"></div>
+    <div class="modal-ft" id="bulk-footer"></div>
+  </div>
+</div>
+
+<!-- ── Librerías (Backbone requiere jQuery + Underscore) ── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-umd-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.5.0/backbone-min.js"></script>
+
+<!-- ── Lector de Excel para "Importar movimientos" (CSV no necesita
+     librería — parser propio en ImportService.js) ── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- ── App modular (ES Modules) ── -->
+<script type="module" src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+
+TUTORIAL 
+
+Conexión a Internet IMPRESCINDIBLE
+
+Crear la estructura del proyecto
+Estructura MIA:
+
+Código
+C:\Users\gilmu\Desktop\Aplicaciones Web\
+  ├─ package.json
+  ├─ server.js
+  └─ node_modules\
+
+
+Segun el caso:
+
+Caso A — migras la carpeta Aplicaciones Web completa (recomendado, más simple):
+
+powershell
+# 1. Instalar Node.js LTS en la máquina nueva
+node -v
+npm -v
+
+# 2. Copiar la carpeta "Aplicaciones Web" completa, EXCEPTO node_modules/
+#  (package.json SÍ va incluido — ya trae las dependencias anotadas)
+
+# 3. Desde dentro de la carpeta copiada:
+# lee package.json, reinstala express + serve-index exactos
+npm install  
+
+Aquí no hace falta npm init -y — sobraría, pués el package.json ya existe.
+
+Caso B — empiezas de cero sin copiar package.json:
+
+powershell
+node -v
+npm -v
+npm init -y
+npm install express    # con nombres explícitos, no a secas
+¿Por qué "excepto node_modules"?
+
+Nunca copies esa carpeta entre máquinas — regenérala siempre con npm install. No vale la pena arrastrarla (miles de ficheros pequeños) y evita problemas si la máquina nueva tiene otra versión de Node.
+
+Lo que se te queda fuera de la ecuación npm (checklist de migración completo)
+
+Como vas a migrar a otra máquina de verdad, esto también hace falta, y no son comandos npm:
+
+Tus datos: contabilidad/data.json, contabilidad/accounts.json, car-maintenance/data.json, car-maintenance/car-names.json — cópialos explícitamente, no van en el package.json ni los reinstala npm.
+El certificado: certs/cert.pem y certs/key.pem tienen la IP 192.168.0.69 grabada en el SAN. Si la máquina nueva tiene otra IP, regenera el certificado con esa IP nueva (comando en certs/README.md) o los navegadores darán un aviso extra de "nombre no coincide".
+*cucurella --- El servicio NSSM: no es portable, hay que reinstalarlo en la máquina nueva repitiendo los pasos de nssm install con la ruta de node.exe de esa máquina (compruébala de nuevo con where node, puede no coincidir con la anterior).
+
+Firewall: las reglas de FirewallRule tampoco viajan solas — hay que volver a crearlas en la máquina nueva.
+# CMD como Administrador
+netsh advfirewall firewall add rule name="AplicacionesWeb HTTP" dir=in action=allow protocol=TCP localport=8080
+netsh advfirewall firewall add rule name="AplicacionesWeb HTTPS" dir=in action=allow protocol=TCP localport=8443
+
+Para verificar que se crearon
+
+cmd
+netsh advfirewall firewall show rule name="AplicacionesWeb HTTP"
+netsh advfirewall firewall show rule name="AplicacionesWeb HTTPS"
+
+
+
+OJO : Qué hace exactamente serve-index y por qué no lo necesitas (te recomendaría quitarlo, no solo por simplificar sino por seguridad.)
+
+serve-index genera un listado navegable (tipo "índice de directorio a la antigua") cuando visitas una carpeta que no tiene index.html. Pero tu app ya no lo necesita: express.static sirve index.html automáticamente en cuanto visitas /contabilidad/ o /car-maintenance/ — eso ya funciona sin serve-index. Su única función real hoy es que si alguien visita la raíz (http://ip:8080/), ve un listado de todas tus carpetas (certs, node_modules, car-maintenance, contabilidad, etc.).
+
+Eso último es exactamente lo que no quieres: aunque ya bloqueamos el acceso directo a los ficheros sensibles, serve-index sigue revelando que existen — cualquiera en tu red ve de un vistazo que hay una carpeta certs/, puede fisgonear nombres de ficheros, y en general es reconocimiento gratis para quien esté curioseando. Quitarlo no rompe nada de la app y reduce superficie de ataque (una dependencia npm menos que mantener, con sus propias dependencias transitivas).
+
+
+
+
+
+--------pm2 ------------------ (no recomendable en windows es de linux)
+Paso 4 Instalar PM2 y arrancar la app
+Instalar PM2 globalmente
+
+bash
+npm install -g pm2
+pm2 -v
+Arrancar la app con PM2
+
+bash
+cd "C:\Users\gilmu\Desktop\Aplicaciones Web"
+pm2 start start.js --name aplicaciones-web
+pm2 save
+Comprobaciones
+
+bash
+pm2 status
+pm2 logs aplicaciones-web
+Infografía: Inserta Infografía 4 Arranque con PM2 aquí.
+
+Paso 5 Instalar pm2-windows-startup y activar arranque automático
+Instalar el módulo Windows
+
+bash
+npm install -g pm2-windows-startup
+Instalar el servicio que arranca PM2
+
+bash
+pm2-startup install
+Guardar procesos para restauración
+
+bash
+pm2 save
+Verificar tras reinicio
+
+Reinicia el servidor Windows.
+
+
+Qué hace cada comando, en realidad
+
+npm install -g pm2-windows-startup — instala un paquete npm que sabe registrar el arranque automático de PM2 en Windows (PM2 en sí no tiene esto nativo, a diferencia de Linux donde usa systemd).
+
+pm2-startup install — esto es lo importante: crea una Tarea Programada de Windows (no un servicio de Windows) con disparador "Al iniciar sesión", cuya acción es ejecutar pm2 resurrect. Es decir: cuando inicias sesión en tu usuario de Windows, esa tarea arranca el demonio de PM2 y le dice "recupera los procesos que tenías guardados".
+
+pm2 save — vuelca la lista de procesos que PM2 tiene corriendo en ese momento (en tu caso, server.js) a un fichero ~/.pm2/dump.pm2. Es lo que pm2 resurrect lee para saber qué relanzar.
+
+Tras reinicio:
+
+pm2 status
+
+Paso 6 Comprobaciones finales y buenas prácticas
+bash
+pm2 logs aplicaciones-web
+Reiniciar app:
+
+bash
+pm2 restart aplicaciones-web
+Eliminar app:
+
+bash
+pm2 delete aplicaciones-web
+
+
+*cucurella -----hacerlo con un servicio windows independiente del login de un usuario concreto (ideal para windows server)
+
+Sin Chocolatey — descarga manual:
+
+Ve a https://nssm.cc/download y baja nssm-2.24.zip.
+Extrae win64\nssm.exe (o win32 si tu Windows es de 32 bits, poco probable) a una carpeta fija, por ejemplo C:\nssm\nssm.exe.
+
+
+
+
+C:\Users\Calvo\Desktop\Aplicaciones Web>
+C:\Users\Calvo\Desktop\Aplicaciones Web>pm2 list
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ aplicaciones-web   │ fork     │ 1    │ online    │ 0%       │ 49.4mb   │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+host metrics | cpu: 25.6% | ram usage: 66.2% |
+
+C:\Users\Calvo\Desktop\Aplicaciones Web>pm2 delete aplicaciones-web
+[PM2] Applying action deleteProcessId on app [aplicaciones-web](ids: [ 0 ])
+[PM2] [aplicaciones-web](0) ✓
+┌────┬───────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name      │ mode     │ ↺    │ status    │ cpu      │ memory   │
+└────┴───────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+host metrics | cpu: 18.8% | ram usage: 66.1% |
+
+C:\Users\Calvo\Desktop\Aplicaciones Web>pm2 save
+
+
+C:\Users\Calvo\Desktop\Aplicaciones Web>pm2 list o pm2 status
+
+desinstalar tarea programada que lanaza los procesos pm2 con el inicio de sesion del usuario
+C:\Users\Calvo\Desktop\Aplicaciones Web>pm2-startup uninstall
+Successfully removed PM2 startup registry entry.
+
+Localizar la ruta exacta de node.exe
+C:\Users\Calvo\Desktop\Aplicaciones Web>where node
+C:\Program Files\nodejs\node.exe
+
+
+Registrar el servicio
+C:\Users\Calvo\Desktop\Aplicaciones Web>nssm install AplicacionesWebServer "C:\Program Files\nodejs\node.exe" "server.js"
+"nssm" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.
+
+C:\Users\Calvo\Desktop\Aplicaciones Web>cd C:\nssm
+
+C:\nssm>nssm install AplicacionesWebServer "C:\Program Files\nodejs\node.exe" "server.js"
+Service "AplicacionesWebServer" installed successfully!
+
+
+Configurarlo correctamente (el servicio)
+# Directorio de trabajo: donde vive server.js (rutas relativas del __dirname dependen de esto)
+nssm set AplicacionesWebServer AppDirectory "C:\Users\Calvo\Desktop\Aplicaciones Web"
+
+# Logs — aqui apareceran las marcas [+Xms] que ya tiene el server.js
+nssm set AplicacionesWebServer AppStdout "C:\Users\Mario\Desktop\Aplicaciones Web\service-out.log"
+nssm set AplicacionesWebServer AppStderr "C:\Users\Mario\Desktop\Aplicaciones Web\service-err.log"
+
+# Rotar logs para que no crezcan sin limite (10 MB, rota online sin reiniciar el servicio)
+nssm set AplicacionesWebServer AppRotateFiles 1
+nssm set AplicacionesWebServer AppRotateOnline 1
+nssm set AplicacionesWebServer AppRotateBytes 10485760
+
+# Arranque automatico RETRASADO — da tiempo a que la red este lista
+# antes de que el servicio intente hacer bind a 0.0.0.0 (Causa n.2 de antes)
+nssm set AplicacionesWebServer Start SERVICE_DELAYED_AUTO_START
+
+Ese retraso no es un número que configuramos nosotros directamente — es el comportamiento estándar de Windows para "Automatic (Delayed Start)", y 2-3 minutos encaja exactamente con su valor por defecto.
+
+Qué es realmente ese retraso
+
+SERVICE_DELAYED_AUTO_START no acepta un parámetro "espera X segundos" en el propio NSSM. Es el Service Control Manager de Windows el que decide cuándo arrancar los servicios marcados como "delayed", y por defecto ese retraso es de 120 segundos (2 minutos) tras terminar de procesar los servicios de arranque normal — a lo que hay que sumar el propio tiempo de arranque de esos servicios previos y la carga del sistema en ese momento, así que en la práctica 2-3 minutos es totalmente esperado, no un fallo.
+
+Es justo el comportamiento que buscábamos al activarlo (evitar que intente hacer bind antes de que la red esté lista, la Causa nº2 de la que hablamos), pero es un mecanismo "a ciegas": espera un tiempo fijo, no comprueba si la red está realmente lista
+
+# Si el proceso muere por lo que sea, que se reinicie solo
+nssm set AplicacionesWebServer AppExit Default Restart
+nssm set AplicacionesWebServer AppRestartDelay 5000
+
+
+Comprobar y arrancar
+nssm start AplicacionesWebServer
+Get-Service AplicacionesWebServer
+Debería mostrar Status: Running. Comprueba que responde:
+
+powershell
+curl.exe http://localhost:8080/contabilidad/ -o NUL -w "HTTP %{http_code}`n"
+
+Y revisa las marcas de tiempo de arranque en el log:
+
+powershell
+Get-Content "C:\Users\gilmu\Desktop\Aplicaciones Web\service-out.log" -Tail 20
+
+Reinicia Windows y confirma que sobrevive sin login
+
+Esta es la prueba real de que ya no depende de tu sesión — reinicia el PC sin iniciar sesión (déjalo en la pantalla de login un minuto) y desde otro dispositivo de tu red comprueba:
+
+https://192.168.0.69:8443/contabilidad/
+
+Comandos de gestión útiles
+powershell
+nssm restart AplicacionesWebServer
+nssm stop AplicacionesWebServer
+nssm status AplicacionesWebServer
+nssm edit AplicacionesWebServer      # abre el editor grafico si prefieres tocar algo a mano
+
+Rollback (por si algo va mal y quieres volver a PM2)
+powershell
+nssm stop AplicacionesWebServer
+nssm remove AplicacionesWebServer confirm
+
+Y vuelves a los comandos de pm2-windows-startup que ya tenías.
+
+

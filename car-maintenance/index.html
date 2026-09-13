@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantenimiento del Coche</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>🚗 Mantenimiento del Coche</h1>
+        </header>
+        
+        <main id="main-content">
+            <!-- El contenido se renderizará aquí -->
+        </main>
+    </div>
+
+    <!-- Templates -->
+    <script type="text/template" id="app-template">
+        <div class="dashboard">
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Total Mantenimientos</h3>
+                    <span class="stat-number"><%= totalMaintenance %></span>
+                </div>
+                <div class="stat-card">
+                    <h3>Fecha límite Próximo Cambio Aceite</h3>
+                    <span class="stat-text"><%= nextService %></span>
+                </div>
+            </div>
+
+            <div class="maintenance-list">
+                <div class="maintenance-list-header">
+                    <h2>Historial de Mantenimiento</h2>
+                    <button id="btn-add-maintenance" class="btn-primary">
+                        + Añadir Mantenimiento
+                    </button>
+                </div>
+                <div id="maintenance-items">
+                    <!-- Los elementos se renderizarán aquí -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="maintenance-modal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Agregar Mantenimiento</h2>
+                    <button class="modal-close" title="Cerrar">&times;</button>
+                </div>
+                <form id="maintenance-form">
+                    <div class="form-group">
+                        <label for="type">Tipo de Mantenimiento:</label>
+                        <select id="type" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="cambio-aceite">Cambio de Aceite</option>
+                            <option value="revision-frenos">Revisión de Frenos</option>
+                            <option value="cambio-filtros">Cambio de Filtros (GASOLEO,AIRE)</option>
+                            <option value="revision-neumaticos-delanteros">Cambio de Neumáticos DELANTEROS</option>
+                            <option value="revision-neumaticos-traseros">Cambio de Neumáticos TRASEROS</option>
+                            <option value="inspeccion-general">ITV</option>
+                            <option value="urea">Cambio Ad-Blue</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Fecha:</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mileage">Kilometraje (Km):</label>
+                        <input type="number" id="mileage" placeholder="ej: 50000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cost">Costo (€):</label>
+                        <input type="number" id="cost" step="0.01" placeholder="ej: 75.50">
+                    </div>
+                    <div class="form-group">
+                        <label for="workshop">Taller:</label>
+                        <input type="text" id="workshop" placeholder="Nombre del taller">
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notas:</label>
+                        <textarea id="notes" rows="3" placeholder="Detalles adicionales..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">Guardar Mantenimiento</button>
+                </form>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="maintenance-template">
+        <div class="maintenance-item" data-id="<%= id %>">
+            <div class="maintenance-header">
+                <h3><%= type.replace('-', ' ').toUpperCase() %></h3>
+                <span class="date"><%= date %></span>
+            </div>
+            <div class="maintenance-details">
+                <div class="detail">
+                    <strong>Kilometraje:</strong> <%= mileage.toLocaleString() %> km
+                </div>
+                <% if (cost > 0) { %>
+                <div class="detail">
+                    <strong>Costo:</strong> €<%= cost.toFixed(2) %>
+                </div>
+                <% } %>
+                <% if (workshop) { %>
+                <div class="detail">
+                    <strong>Taller:</strong> <%= workshop %>
+                </div>
+                <% } %>
+                <% if (notes) { %>
+                <div class="detail">
+                    <strong>Notas:</strong> <%= notes %>
+                </div>
+                <% } %>
+            </div>
+            <div class="maintenance-actions">
+                <button class="btn-edit" data-id="<%= id %>">Editar</button>
+                <button class="btn-delete" data-id="<%= id %>">Eliminar</button>
+            </div>
+        </div>
+    </script>
+
+    <!-- Libraries -->
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/underscore.min.js"></script>
+    <script src="libs/backbone.min.js"></script>
+	<script src="libs/backbone.localStorage-min.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/models/maintenance.js"></script>
+    <script src="js/collections/maintenanceCollection.js"></script>
+    <script src="js/views/maintenanceView.js"></script>
+    <script src="js/views/appView.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

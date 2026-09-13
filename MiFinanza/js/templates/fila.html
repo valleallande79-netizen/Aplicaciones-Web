@@ -1,0 +1,48 @@
+<td contenteditable="true" class="celda concepto"><%= concepto %></td>
+
+<td contenteditable="true" class="celda cantidad <%= tipo %>">
+    <%= tipo === "gasto" ? "-" : "" %><%= cantidad %> €
+</td>
+
+<td>
+    <select class="form-select tipo">
+        <option value="ingreso" <%= tipo === "ingreso" ? "selected" : "" %>>Ingreso</option>
+        <option value="gasto" <%= tipo === "gasto" ? "selected" : "" %>>Gasto</option>
+    </select>
+</td>
+
+<td>
+    <select class="form-select categoria">
+        <option value="" <%= categoria === "" ? "selected" : "" %>>Sin categoría</option>
+
+       <optgroup label="Ingresos"> 
+		   <option value="Sueldo" <%= categoria === "Sueldo" ? "selected" : "" %>>Sueldo</option> 
+		   <option value="Ventas" <%= categoria === "Ventas" ? "selected" : "" %>>Ventas</option> 
+		   <option value="Intereses" <%= categoria === "Intereses" ? "selected" : "" %>>Intereses</option> 
+		   <option value="Alquileres" <%= categoria === "Alquileres" ? "selected" : "" %>>Alquileres</option> 
+		   <option value="Devoluciones" <%= categoria === "Devoluciones" ? "selected" : "" %>>Devoluciones</option> 
+		   <option value="Otros ingresos" <%= categoria === "Otros ingresos" ? "selected" : "" %>>Otros ingresos</option> 
+	   </optgroup> 
+	   <optgroup label="Gastos"> 
+			<option value="Alimentación" <%= categoria === "Alimentación" ? "selected" : "" %>>Alimentación</option> 
+			<option value="Transporte" <%= categoria === "Transporte" ? "selected" : "" %>>Transporte</option> 
+			<option value="Vivienda" <%= categoria === "Vivienda" ? "selected" : "" %>>Vivienda</option> 
+			<option value="Servicios" <%= categoria === "Servicios" ? "selected" : "" %>>Servicios</option> 
+			<option value="Ocio" <%= categoria === "Ocio" ? "selected" : "" %>>Ocio</option> 
+			<option value="Salud" <%= categoria === "Salud" ? "selected" : "" %>>Salud</option> 
+			<option value="Educación" <%= categoria === "Educación" ? "selected" : "" %>>Educación</option> 
+			<option value="Compras" <%= categoria === "Compras" ? "selected" : "" %>>Compras</option> 
+			<option value="Imprevistos" <%= categoria === "Imprevistos" ? "selected" : "" %>>Imprevistos</option> 
+			<option value="Otros gastos" <%= categoria === "Otros gastos" ? "selected" : "" %>>Otros gastos</option> 
+		</optgroup>
+    </select>
+</td>
+
+
+<td>
+    <input type="date" class="form-control fecha" value="<%= fecha %>">
+</td>
+
+<td>
+    <button class="btn btn-danger btn-sm eliminar">X</button>
+</td>
