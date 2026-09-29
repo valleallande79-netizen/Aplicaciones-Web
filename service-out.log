@@ -1,260 +1,59 @@
-[+0ms] Node v24.19.0 arrancando server.js…
-[+28ms] Certificados leídos, arrancando HTTPS…
-[+51ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+53ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+43ms] Certificados leídos, arrancando HTTPS…
-[+69ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+70ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+53ms] Certificados leídos, arrancando HTTPS…
-[+99ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+101ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+78ms] Certificados leídos, arrancando HTTPS…
-[+137ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+140ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+94ms] Certificados leídos, arrancando HTTPS…
-[+161ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+164ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+128ms] Certificados leídos, arrancando HTTPS…
-[+248ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+266ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+50ms] Certificados leídos, arrancando HTTPS…
-[+87ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+88ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+1ms] Node v24.19.0 arrancando server.js…
-[+62ms] Certificados leídos, arrancando HTTPS…
-[+113ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+115ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+63ms] Certificados leídos, arrancando HTTPS…
-[+113ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+116ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+3ms] Node v24.19.0 arrancando server.js…
-[+80ms] Certificados leídos, arrancando HTTPS…
-[+140ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+143ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+183ms] Certificados leídos, arrancando HTTPS…
-[+280ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+283ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+35ms] Certificados leídos, arrancando HTTPS…
-[+59ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+61ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+36ms] Certificados leídos, arrancando HTTPS…
-[+63ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+65ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+52ms] Certificados leídos, arrancando HTTPS…
-[+96ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+98ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+39ms] Certificados leídos, arrancando HTTPS…
-[+69ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+70ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+47ms] Certificados leídos, arrancando HTTPS…
-[+88ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+90ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+57ms] Certificados leídos, arrancando HTTPS…
-[+100ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+105ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+1ms] Node v24.19.0 arrancando server.js…
-[+38ms] Certificados leídos, arrancando HTTPS…
-[+67ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+68ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+172ms] Certificados leídos, arrancando HTTPS…
-[+199ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+200ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
-[+0ms] Node v24.19.0 arrancando server.js…
-[+38ms] Certificados leídos, arrancando HTTPS…
-[+68ms] Servidor HTTP arrancado correctamente
-  Local:  http://localhost:8080
-  Red:    http://192.168.0.69:8080   (sin cifrado — Web Crypto NO funcionará aquí)
-  Apps registradas: contabilidad, WalloTribute
-
-[+71ms] Servidor HTTPS arrancado correctamente
-  Local:  https://localhost:8443
-  Red:    https://192.168.0.69:8443   (necesario para Web Crypto desde otros dispositivos)
-  Nota: el certificado es autofirmado — el navegador avisará
-        la primera vez en cada dispositivo. Ver certs/README.md.
-
+[+2ms] Node v24.19.0 arrancando server.js
+[+4ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+4ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+55ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+3ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+3ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+56ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+3ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+4ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+63ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+4ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+4ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+59ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+3ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+4ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+56ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+3ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+3ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+55ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+3ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+3ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+54ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+4ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+4ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+57ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+3ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+3ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+57ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+3ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+3ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+56ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+3ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+3ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+56ms] HTTP disponible en http://localhost:8080
+[+2ms] Node v24.19.0 arrancando server.js
+[+3ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+3ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+60ms] HTTP disponible en http://localhost:8080
+[+61ms] HTTPS disponible en https://localhost:8443
+[+2ms] Node v24.19.0 arrancando server.js
+[+4ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+4ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+61ms] HTTP disponible en http://localhost:8080
+[+61ms] HTTPS disponible en https://localhost:8443
+[+2ms] Node v24.19.0 arrancando server.js
+[+3ms] Publico: C:\Users\gilmu\Desktop\Aplicaciones Web\public
+[+4ms] Datos privados: C:\Users\gilmu\Desktop\Aplicaciones Web\storage
+[+60ms] HTTP disponible en http://localhost:8080
+[+61ms] HTTPS disponible en https://localhost:8443

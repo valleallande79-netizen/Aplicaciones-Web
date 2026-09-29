@@ -1,7 +1,17 @@
-contabilidad/*.json
-car-maintenance/*.json
-WalloTribute/*.json
+# Dependencias y artefactos
 node_modules/
 dist/
 build/
 .env
+*.log
+
+# Datos privados persistentes
+storage/**/*.json
+
+# Claves privadas y certificados locales
+certs/key.pem
+certs/*.pfx
+certs/*.p12
+
+# Temporales de escritura atomica
+storage/**/*.tmp
